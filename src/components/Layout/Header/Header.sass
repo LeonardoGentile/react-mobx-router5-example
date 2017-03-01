@@ -1,0 +1,26 @@
+
+$headerHeight: 126px
+
+.headerContainer
+    position: relative  // so we can use absolute inside it
+    z-index: $zindex_headerContainer
+    height: $headerHeight
+    // ****
+    background: $orange
+    border-bottom: 2px solid $redSB-dark
+    border-top: 2px solid $redSB-dark
+
+.header
+    +container
+    +clearfix
+    position: relative
+    height: 100%
+
+.navAccountContainer
+    position: absolute
+    top: 0
+    right: 0
+    z-index: $zindex_navAccount
+
+
+

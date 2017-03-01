@@ -1,0 +1,42 @@
+
+.navAccount
+  > li
+    height: 46px
+    text-align: center
+    +light-on-dark
+
+    > a
+      display: inline-block
+      color: #FFF
+      font-size: 15px
+      line-height: 44px
+      padding: 0 18px
+
+    &.sign-in
+      background: $redSB-dark2
+
+    &.sign-up
+      background: $redSB-light
+
+    &.builder
+      background: $redSB-light2
+
+    &.finder
+      background: $redSB
+
+    &.my-account
+      //background: $redSB-dark url('/public/images/__menu_my_account.png') no-repeat 120px 0
+      padding-right: 40px
+      position: relative
+
+      &:hover
+        background-position: 120px -47px
+
+        span
+          border-bottom: none
+
+        .menu-hover
+          display: block
+
+      a
+        padding-right: 0

@@ -1,0 +1,31 @@
+=container
+    margin: auto
+    width: $width
+
+=clearfix
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+//  ==================
+//  = FONT-SMOOTHING =
+//  ==================
+// Activate/Deactivate font-smoothing
+// The default is subpixel level, by passing "on" we deactivate it, activating the antialiased (less defined) level.
+// This is needed for light text on dark bg `bug` on chrome: http://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing/
+=font-smoothing-antialiased($value: on)
+  @if $value == on
+    -webkit-font-smoothing: antialiased           // DO NOT USE THIS SITE-WIDE
+    -moz-osx-font-smoothing: grayscale
+  @else
+    -webkit-font-smoothing: subpixel-antialiased  // On most non-retina displays this will give the sharpest text (default)
+    -moz-osx-font-smoothing: auto
+
+
+// It removes the subpixel smoothing (default) for light text on dark bg
+=light-on-dark
+  +font-smoothing-antialiased(on)
+
+=dark-on-light
+  +font-smoothing-antialiased(off)
