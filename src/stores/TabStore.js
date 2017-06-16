@@ -44,5 +44,5 @@ class TabStore {
 }
 
 
-const tabStore = window.__tabStore__ = new TabStore();
+const tabStore = new TabStore();
 export default tabStore;

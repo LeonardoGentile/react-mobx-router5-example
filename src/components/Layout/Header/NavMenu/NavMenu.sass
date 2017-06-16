@@ -1,0 +1,18 @@
+
+.nav
+  +clearfix
+  +horizontal-list
+  > li
+    background: $red-dark2
+    margin-left: 2px
+    //border-left: $red-light2 solid 1px
+    // on the the li, not on the `a`
+    &:global(.active)
+      background: $green
+
+    > a
+      +nav-link
+      text-decoration: none
+
+
+

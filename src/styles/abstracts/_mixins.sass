@@ -1,12 +1,18 @@
 =container
-    margin: auto
-    width: $width
+  margin: auto
+  width: $width
 
 =clearfix
   &:after
     content: ""
     display: table
     clear: both
+
+=horizontal-list
+  +clearfix
+  li
+    float: left
+
 
 //  ==================
 //  = FONT-SMOOTHING =
@@ -16,12 +22,13 @@
 // This is needed for light text on dark bg `bug` on chrome: http://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing/
 =font-smoothing-antialiased($value: on)
   @if $value == on
-    -webkit-font-smoothing: antialiased           // DO NOT USE THIS SITE-WIDE
+    -webkit-font-smoothing: antialiased
+    // DO NOT USE THIS SITE-WIDE
     -moz-osx-font-smoothing: grayscale
   @else
-    -webkit-font-smoothing: subpixel-antialiased  // On most non-retina displays this will give the sharpest text (default)
+    -webkit-font-smoothing: subpixel-antialiased
+    // On most non-retina displays this will give the sharpest text (default)
     -moz-osx-font-smoothing: auto
-
 
 // It removes the subpixel smoothing (default) for light text on dark bg
 =light-on-dark
@@ -29,3 +36,29 @@
 
 =dark-on-light
   +font-smoothing-antialiased(off)
+
+
+=nav-link
+  display: inline-block
+  color: #FFF
+  font-size: 15px
+  line-height: 46px
+  padding: 0 18px
+  text-align: center
+  +light-on-dark
+
+
+
+  &:hover
+    background: $orange
+
+  &:global(.active)
+    background: $green
+
+
+=simple-nav-link
+  +clearfix
+  float: left
+  //background: $red-dark2
+  +nav-link
+  background: $red-dark2

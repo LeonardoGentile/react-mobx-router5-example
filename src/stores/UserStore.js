@@ -1,21 +1,11 @@
 import { observable, action, computed } from 'mobx';
 
-// TODO:
-function _handleErrors(response) {
-  if (response.data && response.data.success !== true) {
-    throw Error(response);
-  }
-  return response;
-}
-
 
 class UserStore {
-
   constructor() {
     this.user = this.defaultUser;
     this.watchlist = [];
   }
-
 
   defaultUser = {
     "level" : "V",
@@ -51,7 +41,4 @@ class UserStore {
 
 
 const userStore = new UserStore();
-
 export default userStore;
-
-export { UserStore };

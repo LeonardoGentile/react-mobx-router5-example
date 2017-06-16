@@ -2,25 +2,36 @@
 $headerHeight: 126px
 
 .headerContainer
-    position: relative  // so we can use absolute inside it
-    z-index: $zindex_headerContainer
-    height: $headerHeight
-    // ****
-    background: $orange
-    border-bottom: 2px solid $redSB-dark
-    border-top: 2px solid $redSB-dark
+  position: relative // so we can use absolute inside it
+  z-index: $zindex_headerContainer
+  height: $headerHeight
+  // ****
+  background: $red
+  border-bottom: 2px solid $red-dark
+  border-top: 2px solid $red-dark
+
+.explanation-home
+  position: absolute
+  top: 60px
+  left: 10px
+
+.explanation-nav
+  position: absolute
+  top: 90px
+  right: 10px
 
 .header
-    +container
-    +clearfix
-    position: relative
-    height: 100%
+  +container
+  +clearfix
+  position: relative
+  height: 100%
 
-.navAccountContainer
-    position: absolute
-    top: 0
-    right: 0
-    z-index: $zindex_navAccount
+.navContainer
+  position: absolute
+  top: 0
+  right: 0
+  z-index: $zindex_navAccount
 
-
-
+.home-link
+  +simple-nav-link
+  text-decoration: none

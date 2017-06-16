@@ -1,35 +1,41 @@
 import React from 'react';
-import NavAccount from './NavAccount/NavAccount';
-import { BaseLink, withRoute } from 'react-router5';
+import {inject} from 'mobx-react';
 
-import styles from './Header.sass';
-import logo_img from './img/home_logo.jpg'
+import NavMenu from './NavMenu/NavMenu';
+import * as styles from './Header.sass';
+import {Link} from "react-mobx-router5";
 
+
+@inject('routerStore')
 class Header extends React.Component {
 
   render() {
-    const { router } = this.props;
-
+    const routerStore = this.props.routerStore;
     return (
       <div className={styles.headerContainer}>
         <header className={styles.header}>
+          <Link
+            routeName={'home'}
+            routerStore={routerStore}
+            className={styles.homeLink}> Home </Link>
+          <div className={styles.navContainer}>
+            <NavMenu />
+          </div>
+          <div className={styles.explanationHome}>
+            <p>^ This is a Link Component => It will apply automatically an active class on the `a` element</p>
+          </div>
+          <div className={styles.explanationNav}>
+            <p> These are NavLink Components => The `active` class will be applied to the 'li' wrappers ^</p>
+          </div>
+          <br/>
 
-            <div className="logo">
-              <BaseLink router={ router } routeName='home'>
-                <img src={logo_img} alt="Logo" />
-              </BaseLink>
-            </div>
-
-            <div className={styles.navAccountContainer}>
-              <NavAccount  />
-            </div>
-
-            <div className={styles.socialbuttons}></div>
         </header>
       </div>
     );
   }
 }
 
-// will pass the router trough context
-export default withRoute(Header);
+
+// will passe the router trough context
+export default Header;
+

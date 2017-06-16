@@ -1,7 +1,9 @@
 import createRouter from 'router5';
 import loggerPlugin from 'router5/plugins/logger';
-import listenersPlugin from 'router5/plugins/listeners';
 import browserPlugin from 'router5/plugins/browser';
+import {mobxPlugin} from 'mobx-router5';
+
+import routerStore from './stores/RouterStore';
 import routes from './routes';
 
 
@@ -10,20 +12,16 @@ const routerOptions = {
   strictQueryParams: true
 };
 
-function configureRouter(useListenersPlugin = false) {
-    const router = createRouter(routes, routerOptions)
-        // Plugins
-        .usePlugin(loggerPlugin)
-        .usePlugin(browserPlugin({
-            useHash: true
-        }));
+// I can import the default module with whatever name I want (ex. `createRouter`)
+export default function configureRouter() {
+  const router = createRouter(routes, routerOptions)
+  // Plugins
+    .usePlugin(browserPlugin({useHash: true}))
+    .usePlugin(mobxPlugin(routerStore))
+    .usePlugin(loggerPlugin);
 
-    if (useListenersPlugin) {
-        router.usePlugin(listenersPlugin());
-    }
-
-    return router;
+  return router;
 }
 
-// I can import the default module with whatever name I want (createRouter)
-export default configureRouter;
+
+

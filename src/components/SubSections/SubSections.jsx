@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {routeNode, RouteView} from "react-mobx-router5";
 import routes from "../../routes";
 
-const routeNodeName = '';
+const routeNodeName = 'section.subsection';
 
-class Main extends React.Component {
+class SubSections extends React.Component {
   render() {
     const {activeRoute} = this.props;
     return <RouteView route={activeRoute} routes={routes} routeNodeName={routeNodeName}/>;
@@ -13,12 +13,12 @@ class Main extends React.Component {
 }
 
 // Both injected by routeNode
-Main.propTypes = {
-  activeRoute: PropTypes.object.isRequired, // non-observable. plain js obj
+SubSections.propTypes = {
+  activeRoute: PropTypes.object.isRequired,
   routerStore: PropTypes.object.isRequired
 };
 
+export default routeNode(routeNodeName)(SubSections);
 
-// higher-order component to wrap a route node component.
-// '' if root node
-export default routeNode(routeNodeName)(Main);
+
+

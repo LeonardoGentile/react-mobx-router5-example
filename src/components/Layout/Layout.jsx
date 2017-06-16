@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Header from './Header/Header';
-import Sidebar from './Sidebar/Sidebar';
-import Footer from './Footer/Footer';
 import Main from '../Main/Main';
+import Footer from './Footer/Footer';
+
 
 import styles from './Layout.sass';
 
@@ -13,25 +13,22 @@ class Layout extends React.Component {
   }
 
   render() {
+
     return (
       <div>
-        <div className={styles.bodyLoader}></div>
 
-        <header>
-          <Header />
-        </header>
+        <div className={styles.bodyLoader}/>
 
-        <main>
+        <Header />
+
+        <main className={styles.mainContainer}>
           <Main />
         </main>
 
-        <footer>
+        <footer className={styles.footerContainer}>
           <Footer />
         </footer>
 
-        <aside>
-          <Sidebar />
-        </aside>
 
       </div>
     );

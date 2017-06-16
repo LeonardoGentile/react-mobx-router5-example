@@ -1,5 +1,5 @@
 
-// TODO
+// TODO: not working for prod!
 
 var webpack = require('webpack');
 var path = require('path');
