@@ -1,8 +1,9 @@
 import {Home} from './components/Home';
 import {Index} from './components/Index';
 import {Login} from './components/Login';
-import Sections from './components/Sections/Sections';
-import SubSections from './components/SubSections/SubSections';
+// Route Nodes
+import Sections from './nodecomponents/Sections/Sections';
+import SubSections from './nodecomponents/SubSections/SubSections';
 
 
 export default [

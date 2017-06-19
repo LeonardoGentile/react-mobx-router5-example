@@ -14,17 +14,17 @@ import './styles/base/_commons.sass';
 
 const router = createRouter(true);
 
-// Provider will add your router instance in context.
-const wrappedApp = (
+// Provider will add your pass the stores instances using context
+const App = (
   <Provider { ...stores } >
-      <Layout/>
+    <Layout/>
   </Provider>
 );
 
 // Render the entire app when the router starts
 router.start((err, state) => {
   ReactDOM.render(
-    wrappedApp,
+    App,
     document.getElementById('app')
   );
 });

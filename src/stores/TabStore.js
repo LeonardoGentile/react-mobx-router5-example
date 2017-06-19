@@ -1,14 +1,9 @@
-import { observable, computed, autorun, action } from 'mobx';
+import {observable, computed, action} from 'mobx';
 
-// Mobx Observable Store
+// A Mobx Store
 class TabStore {
 
-  constructor() {
-    // Autorun runs every time the store changes
-    // In reality what I want is to run a react .render() whenever something changes
-    autorun(() => console.log("Active Tab: " + this.activeTab));
-  }
-
+  // Observable properties
   @observable activeTab = null;
   @observable tabs = [];
 
@@ -16,33 +11,28 @@ class TabStore {
     return this.tabs.length;
   }
 
-
-  //  ===========
-  //  = Methods =
-  //  ===========
+  // Helper methods
   _addTab = (id) => {
 
     const found = this.tabs.find(function(item, index, array) {
       return item.id === id
     });
+
+    // Add element if not already in the array
     if (!found) {
       this.tabs.push({
         id: id,
       });
     }
-    else {
-      console.log("Element already in array");
-    }
   };
 
+  // Actions
   @action setActiveTab = (id) => {
-    this.activeTab = id;
     this._addTab(id);
+    this.activeTab = id;
   };
-
 
 }
-
 
 const tabStore = new TabStore();
 export default tabStore;

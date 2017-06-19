@@ -8,7 +8,7 @@ const routeNodeName = 'section';
 class Sections extends React.Component {
   render() {
     const {activeRoute} = this.props;
-    return <RouteView route={activeRoute} routes={routes} routeNodeName={routeNodeName}/>;
+    return <RouteView route={activeRoute} routes={routes} routeNodeName={routeNodeName} />;
   }
 }
 

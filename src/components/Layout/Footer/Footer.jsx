@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {withRoute, Link} from "react-mobx-router5";
 import styles from './Footer.sass';
 
@@ -13,7 +14,20 @@ function AnotherElement(props) {
  );
 }
 
+
+AnotherElement.propTypes = {
+  // These are injected by withRoute
+  routerStore: PropTypes.object,
+  route: PropTypes.object,
+  isActive: PropTypes.bool,
+  className: PropTypes.string,
+  // This is passed to the wrapper for computing isActive and className
+  routeName: PropTypes.string,
+};
+
 const AnotherComponentWithRoute = withRoute(AnotherElement);
+
+
 
 
 class Footer extends React.Component {
@@ -41,7 +55,13 @@ class Footer extends React.Component {
   }
 }
 
-
+Footer.propTypes = {
+  // These are injected by withRoute
+  routerStore: PropTypes.object,
+  route: PropTypes.object,
+  isActive: PropTypes.bool,
+  className: PropTypes.string
+};
 
 
 export default withRoute(Footer);

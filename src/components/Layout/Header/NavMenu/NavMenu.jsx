@@ -1,50 +1,56 @@
 import React from "react";
-import { inject, observer } from "mobx-react";
-import { BaseLink, Link, NavLink } from "react-mobx-router5";
+import PropTypes from 'prop-types';
+import {inject, observer} from "mobx-react";
+import {NavLink} from "react-mobx-router5";
 import * as styles from "./NavMenu.sass";
 import {} from 'react-mobx-router5';
 
-function LoggedInMenu(props) {
-  const links = [
-    { routeName: 'index',
-      routeParams: {id: 1},
-      linkName: 'index'
-    },
-    { routeName: 'section.home',
-      routeParams: {},
-      linkName: 'Section/Home'
-    },
-    { routeName: 'section.subsection.home',
-      routeParams: {},
-      linkName: 'Section/SubSection/home'
-    },
-    { routeName: 'section.subsection.login',
-      routeParams: {},
-      linkName: 'login/logout'
-    }
-  ];
+const links = [
+  {
+    routeName: 'index',
+    routeParams: {id: 1},
+    linkName: 'index'
+  },
+  {
+    routeName: 'section.home',
+    routeParams: {},
+    linkName: 'Section/Home'
+  },
+  {
+    routeName: 'section.subsection.home',
+    routeParams: {},
+    linkName: 'Section/SubSection/home'
+  },
+  {
+    routeName: 'section.subsection.login',
+    routeParams: {},
+    linkName: 'login/logout'
+  }
+];
 
-  const Navs = links.map((item, index) => {
-    return (
-      <NavLink
-        key={index}
-        routeName={item.routeName}
-        routeParams={item.routeParams}>
-          {item.linkName}
-      </NavLink>);
-  });
-
+const NavLinks = links.map((item, index) => {
   return (
-    <ul className={styles.nav}>
-      { Navs }
+    <NavLink
+      key={index}
+      routeName={item.routeName}
+      routeParams={item.routeParams}>
+      {item.linkName}
+    </NavLink>);
+});
+
+
+
+function LoggedInMenu(props) {
+  return (
+    <ul className={styles.navMenu}>
+      { NavLinks }
     </ul>
   );
 }
 
-
 function LoggedOutMenu(props) {
   return (
-    <ul className={styles.nav}>
+    <ul className={styles.navMenu}>
       <NavLink routeName="login" linkClassName="class-for-login-link">
         login
       </NavLink>
@@ -53,28 +59,19 @@ function LoggedOutMenu(props) {
 }
 
 
-@inject('routerStore', 'userStore')
+@inject('userStore')
 @observer
 class NavMenu extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this._showLogin = this._showLogin.bind(this);
-  }
-
-  _showLogin(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    console.log("hello");
-  }
-
   render() {
-
     const isLoggedIn = this.props.userStore.isLoggedIn;
     return (
       isLoggedIn ? <LoggedInMenu /> : <LoggedOutMenu/>);
   }
 }
+
+NavMenu.propTypes = {
+  userStore: PropTypes.object // injected
+};
 
 export default NavMenu;

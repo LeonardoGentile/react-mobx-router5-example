@@ -1,14 +1,18 @@
+.header
+  +container
+  +clearfix
+  position: relative
+  height: 100%
 
-$headerHeight: 126px
+.home-link
+  +simple-nav-link
+  text-decoration: none
 
-.headerContainer
-  position: relative // so we can use absolute inside it
-  z-index: $zindex_headerContainer
-  height: $headerHeight
-  // ****
-  background: $red
-  border-bottom: 2px solid $red-dark
-  border-top: 2px solid $red-dark
+.nav-container
+  position: absolute
+  top: 0
+  right: 0
+  z-index: $zindex_navAccount
 
 .explanation-home
   position: absolute
@@ -20,18 +24,3 @@ $headerHeight: 126px
   top: 90px
   right: 10px
 
-.header
-  +container
-  +clearfix
-  position: relative
-  height: 100%
-
-.navContainer
-  position: absolute
-  top: 0
-  right: 0
-  z-index: $zindex_navAccount
-
-.home-link
-  +simple-nav-link
-  text-decoration: none

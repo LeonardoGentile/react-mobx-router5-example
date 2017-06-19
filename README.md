@@ -1,26 +1,13 @@
-# react-webpack-babel-simple-starter 
-Simple React Webpack Babel Starter Kit
+# react-mobx-router5-example 
+  
+This is a simple setup example for the [react-mobx-router5](https://github.com/LeonardoGentile/react-mobx-router5) project.
 
-Tired of complicated starters with 200MB of dependencies which are hard to understand and modify?
+### Install and Run
 
-Try this is a simple [React](https://facebook.github.io/react/), [Webpack](http://webpack.github.io/) and [Babel](https://babeljs.io/) application with nothing else in it.
-
-This is a fork of [react-webpack-babel-simple-starter](https://github.com/alicoding/react-webpack-babel)
-
-### What's in it?
-
-* Simple src/app.jsx and src/app.scss (local module css).
-* Webpack configuration for development (with hot reloading) and production (with minification).
-* CSS module loading, so you can include your css by ```import styles from './path/to.css';```.
-* Both js(x) and css hot loaded during development.
-
-### To run
-
-* You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
-* Fork and clone the project:
+* Fork, clone, or download the project:
 
 ```
-git clone https://github.com/alicoding/react-webpack-babel.git
+git clone https://github.com/LeonardoGentile/react-mobx-router5-example.git
 ```
 
 * Then install the dependencies:
@@ -37,63 +24,46 @@ npm start
 
 Open the web browser to `http://localhost:8888/`
 
-### To build the production package
+### Routes and Nodes
+
+The project uses this routes configuration:
+
+```javascript
+export default [
+  { name: 'home', path: '/', component: Home},
+  { name: 'login', path: '/login', component: Login},
+  { name: 'index', path: '/index/:id', component: Index},
+  { name: 'section', path: '/section', component: Sections, children: [
+    // Sections
+    { name: 'home', path: '/home', component: Home },
+    { name: 'login', path: '/login', component: Login },
+    { name: 'index', path: '/index/:id', component: Index },
+    { name: 'subsection', path: '/subsection', component: SubSections, children: [
+      // Subsections
+      { name: 'home', path: '/home', component: Home },
+      { name: 'login', path: '/login', component: Login },
+      { name: 'index', path: '/index/:id', component: Index }
+    ]}
+  ]}
+];
 
 ```
-npm run build
-```
 
-### Nginx Config
+That means that the nodes of this app are:
 
-Here is an example Nginx config:
-```
-server {
-  # ... root and other options
+  - `''` the root node, see the `Main` component
+  - `'section'`, see the `Sections` component
+  - `'section.subsection'`, see the `Subsections` component
+  
+All this components should be wrapped with `routeNode` HOC.  
+Notice that `routeNode` HOC injects an `activeRoute` (non-observable) and (mobx-router5) `routerStore` props to the wrapped component.
 
-  gzip on;
-  gzip_http_version 1.1;
-  gzip_types text/plain text/css text/xml application/javascript image/svg+xml;
+Each one of these uses in turn the `RouteView` component, resposnsible to select and render the various
+subcomponent.  
+Notice that a `RouteView` component injects a `route` prop (in this case the non-observable `activeRoute` that was injected into the routeNode components) to the newly created component.
 
-  location / {
-    try_files $uri $uri/ /index.html;
-  }
+The better way to learn about [react-mobx-router5](https://github.com/LeonardoGentile/react-mobx-router5) is to view the source code and play around with this example.
 
-  location ~ \.html?$ {
-    expires 1d;
-  }
+If you have any trouble or doubt please open an issue either here or on [react-mobx-router5](https://github.com/LeonardoGentile/react-mobx-router5) repo.
 
-  location ~ \.(svg|ttf|js|css|svgz|eot|otf|woff|jpg|jpeg|gif|png|ico)$ {
-    access_log off;
-    log_not_found off;
-    expires max;
-  }
-}
-```
 
-### Eslint
-There is a .eslint.yaml config for eslint ready with React plugin.
-To use it, you need to install additional dependencies though:
-
-```
-npm install --save-dev eslint eslint-plugin-react
-```
-
-To do the actual linting, run:
-
-```
-npm run lint
-```
-
-### Notes on importing css styles
-* styles having /src/ in their absolute path are considered part of the application and exported as local css modules.
-* other styles are considered global styles used by many components and are included in the css bundle directly.
-
-### Contribute
-Please contribute to the project if you know how to make it better, including this README :)
-
-### Personal Setup
-On the personal Setup branch I've added some tools and extra funcitonalities to better suit my needs.
-- [babel-plugin-react-html-attrs](https://github.com/insin/babel-plugin-react-html-attrs) Transforms JSX `class` attributes into `className` and `for` attributes into `htmlFor`, allowing you to copy and paste HTML into your React components without having to manually edit these particular attributes each time.
-- Personal `.editorconfig` setup
-- Re-added `bootstrap` (it was stripped in the original project)
-- [react-router](https://github.com/ReactTraining/react-router) basic setup

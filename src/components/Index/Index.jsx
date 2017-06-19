@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {observer, inject} from 'mobx-react';
 import styles from './Index.sass';
 
@@ -16,7 +17,7 @@ class Index extends React.Component {
     tabStore.setActiveTab(id);
   }
 
-  // Triggered when a component will be scheduled to re-render because data it observes has changed.
+  // Triggered when a component will be scheduled to re-render because data it observes has changed (because @observer)
   // This makes it easy to trace renders back to the action that caused the rendering.
   componentWillReact() {
     console.debug("I will re-render, since the todo has changed!");
@@ -54,5 +55,10 @@ class Index extends React.Component {
     );
   }
 }
+
+Index.PropTypes = {
+  tabStore: PropTypes.object, // injected
+  route: PropTypes.object // injected by RouteView (non-observable)
+};
 
 export default Index;
