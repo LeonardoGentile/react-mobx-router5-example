@@ -7,15 +7,16 @@ const routeNodeName = ''; // '' because root node
 
 class Main extends React.Component {
   render() {
-    const {activeRoute} = this.props;
+    const {route} = this.props;
     // This will inject 'route' to the selected child component
-    return <RouteView route={activeRoute} routes={routes} routeNodeName={routeNodeName} />;
+    return <RouteView route={route} routes={routes} routeNodeName={routeNodeName} />;
   }
 }
 
-// Both injected by routeNode
+// All injected by routeNode
 Main.propTypes = {
-  activeRoute: PropTypes.object, // non-observable. plain js obj
+  route: PropTypes.object, // observable
+  plainRoute: PropTypes.object, // non-observable plain js obj
   routerStore: PropTypes.object
 };
 

@@ -7,15 +7,16 @@ const routeNodeName = 'section.subsection';
 
 class SubSections extends React.Component {
   render() {
-    const {activeRoute} = this.props;
-    return <RouteView route={activeRoute} routes={routes} routeNodeName={routeNodeName} />;
+    const {route} = this.props;
+    return <RouteView route={route} routes={routes} routeNodeName={routeNodeName} />;
   }
 }
 
-// Both injected by routeNode
+// All injected by routeNode
 SubSections.propTypes = {
-  activeRoute: PropTypes.object.isRequired,
-  routerStore: PropTypes.object.isRequired
+  route: PropTypes.object, // observable
+  plainRoute: PropTypes.object, // non-observable plain js obj
+  routerStore: PropTypes.object
 };
 
 export default routeNode(routeNodeName)(SubSections);

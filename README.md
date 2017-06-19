@@ -56,11 +56,11 @@ That means that the nodes of this app are:
   - `'section.subsection'`, see the `Subsections` component
   
 All this components should be wrapped with `routeNode` HOC.  
-Notice that `routeNode` HOC injects an `activeRoute` (non-observable) and (mobx-router5) `routerStore` props to the wrapped component.
+Notice that `routeNode` HOC injects an observable `route`, a non-observable `plainRoute` and a (mobx-router5) `routerStore` prop to the wrapped component.
 
 Each one of these uses in turn the `RouteView` component, resposnsible to select and render the various
 subcomponent.  
-Notice that a `RouteView` component injects a `route` prop (in this case the non-observable `activeRoute` that was injected into the routeNode components) to the newly created component.
+Notice that a `RouteView` component injects a `route` prop to the newly created component. 
 
 The better way to learn about [react-mobx-router5](https://github.com/LeonardoGentile/react-mobx-router5) is to view the source code and play around with this example.
 
