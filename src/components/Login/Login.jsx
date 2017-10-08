@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {fakeLogin, fakeLogout} from '../../actions/auth'
 import {observer, inject} from 'mobx-react';
 import styles from './Login.sass'
@@ -11,7 +12,7 @@ class Login extends React.Component {
 
   // To validate the injected store
   static propTypes = {
-    userStore: React.PropTypes.object.isRequired
+    userStore: PropTypes.object.isRequired
   };
 
   constructor(props) {
