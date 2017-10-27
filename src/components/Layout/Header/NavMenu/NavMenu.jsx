@@ -22,7 +22,7 @@ const links = [
     linkName: 'Section/SubSection/home'
   },
   {
-    routeName: 'section.subsection.login',
+    routeName: 'login',
     routeParams: {},
     linkName: 'login/logout'
   }
@@ -52,7 +52,7 @@ function LoggedOutMenu(props) {
   return (
     <ul className={styles.navMenu}>
       <NavLink routeName="login" linkClassName="class-for-login-link">
-        login
+        login/logout
       </NavLink>
     </ul>
   );
