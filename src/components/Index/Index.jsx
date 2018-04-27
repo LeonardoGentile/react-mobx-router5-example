@@ -11,9 +11,9 @@ class Index extends React.Component {
     super(props);
   }
 
-  _setActiveTab(props) {
-    const tabStore = props.tabStore;
-    const {id} = props.route.params;
+  _setActiveTab() {
+    const tabStore = this.props.tabStore;
+    const {id} = this.props.route.params;
     tabStore.setActiveTab(id);
   }
 
@@ -28,7 +28,7 @@ class Index extends React.Component {
   // If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
   // Setting state in this method will trigger a re-rendering.
   componentDidMount() {
-    this._setActiveTab(this.props);
+    this._setActiveTab();
   }
 
   componentWillUnmount() {
@@ -56,7 +56,7 @@ class Index extends React.Component {
   }
 }
 
-Index.PropTypes = {
+Index.propTypes = {
   tabStore: PropTypes.object, // injected
   route: PropTypes.object // injected by RouteView (non-observable)
 };
